@@ -115,4 +115,28 @@ int main(void) {
 
 	//Prim algorithm starts
 	long long res = 0;
+	Edge* start = (Edge*)malloc(sizeof(Edge));
+	start->cost = 0; start->node = 1; push(pq, start);
+	for (int i = 0; i <= n; i++) 
+	{
+		int nextNode = -1, nextCost = INT_MAX;
+		while (1) 
+		{
+			Edge* now = pop(pq);
+			if (now == NULL) break;
+			nextNode = now->node;
+			if (!d[nextNode])
+			{
+				nextCost = now->cost; break;
+			}
+			
+		}
+		if (nextCost == INT_MAX) printf("It is not a connected graph.\n");
+		res += nextCost;
+		d[nextNode] = 1;
+		Node* cur = adj[nextNode];
+		while (cur != NULL) { push(pq, cur->data); cur = cur->next; }
+	}
+	printf("%lld\n", res);
+	system("pause");
 }
