@@ -89,3 +89,30 @@ void addNode(Node** target, int index, Edge* edge)
 	}
 
 }
+
+int main(void) {
+	int n, m;
+	scanf("%d %d", &n, &m);
+	adj = (Node**)malloc(sizeof(Node*) * (n + 1));
+	for (int i = 1; i <= n; i++) {
+		adj[i] = NULL;
+	}
+	priorityQueue* pq;
+	pq = (priorityQueue*)malloc(sizeof(priorityQueue));
+	pq->count = 0;
+	for (int i = 0; i < m; i++) {
+		int a, b, c;
+		scanf("%d %d %d", &a, &b, &c);
+		Edge* edge1 = (Edge*)malloc(sizeof(Edge));
+		edge1->node = b;
+		edge1->cost = c;
+		addNode(adj, a, edge1);
+		Edge* edge2 = (Edge*)malloc(sizeof(Edge));
+		edge2->node = a;
+		edge2->cost = c;
+		addNode(adj, b, edge2);
+	}
+
+	//Prim algorithm starts
+	long long res = 0;
+}
